@@ -1,5 +1,6 @@
 package com.itau.desafio.Service;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -13,7 +14,12 @@ public class TransacaoService {
     private final List<Transacao> transacoes = new CopyOnWriteArrayList<>();
 
     public List<Transacao> listarTransacoes(){
-        return transacoes;
+
+        OffsetDateTime limite = OffsetDateTime.now().minusSeconds(60);
+
+        return transacoes.stream()
+                .filter(t -> t.getDataHora().isAfter(limite))
+                .toList();
     }
     
     public void salvarTransacao(Transacao bodyTransacao) {
