@@ -7,13 +7,12 @@ import com.itau.desafio.Domain.Transacao;
 @Service
 public class TransacaoService {
 
-    public String salvarTransacao(Transacao bodyTransacao) {
+    public void salvarTransacao(Transacao bodyTransacao) {
         if (bodyTransacao.getValor() < 0) {
             throw new IllegalArgumentException("Valor da transação não pode ser negativo.");
         }
         if (bodyTransacao.getDataHora().isAfter(java.time.OffsetDateTime.now())) {
             throw new IllegalArgumentException("Data e hora da transação não podem ser futuras.");
         }
-        return "Tudo ok";
     }
 }
