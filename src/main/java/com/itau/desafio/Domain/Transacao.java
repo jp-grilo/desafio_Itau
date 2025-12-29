@@ -15,10 +15,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Transacao {
     @NotNull
-    @Positive
+
     private Double valor;
 
     @NotNull
-    @PastOrPresent
+
     private OffsetDateTime dataHora;
 }
