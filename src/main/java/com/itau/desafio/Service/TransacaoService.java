@@ -1,5 +1,8 @@
 package com.itau.desafio.Service;
 
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import org.springframework.stereotype.Service;
 
 import com.itau.desafio.Domain.Transacao;
@@ -7,6 +10,12 @@ import com.itau.desafio.Domain.Transacao;
 @Service
 public class TransacaoService {
 
+    private final List<Transacao> transacoes = new CopyOnWriteArrayList<>();
+
+    public List<Transacao> listarTransacoes(){
+        return transacoes;
+    }
+    
     public void salvarTransacao(Transacao bodyTransacao) {
         if (bodyTransacao.getValor() < 0) {
             throw new IllegalArgumentException("Valor da transação não pode ser negativo.");
@@ -14,5 +23,6 @@ public class TransacaoService {
         if (bodyTransacao.getDataHora().isAfter(java.time.OffsetDateTime.now())) {
             throw new IllegalArgumentException("Data e hora da transação não podem ser futuras.");
         }
+        transacoes.add(bodyTransacao);
     }
 }
