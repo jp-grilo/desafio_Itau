@@ -31,4 +31,8 @@ public class TransacaoService {
         }
         transacoes.add(bodyTransacao);
     }
+
+    public void deletarTransacoes() {
+        transacoes.clear();
+    }
 }

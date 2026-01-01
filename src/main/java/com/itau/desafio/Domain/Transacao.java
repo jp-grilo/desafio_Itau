@@ -3,8 +3,6 @@ package com.itau.desafio.Domain;
 import java.time.OffsetDateTime;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PastOrPresent;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
