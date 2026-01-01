@@ -13,7 +13,7 @@ public class TransacaoService {
 
     private final List<Transacao> transacoes = new CopyOnWriteArrayList<>();
 
-    public List<Transacao> listarTransacoes(){
+    public List<Transacao> listarTransacoes() {
 
         OffsetDateTime limite = OffsetDateTime.now().minusSeconds(60);
 
@@ -21,7 +21,7 @@ public class TransacaoService {
                 .filter(t -> t.getDataHora().isAfter(limite))
                 .toList();
     }
-    
+
     public void salvarTransacao(Transacao bodyTransacao) {
         if (bodyTransacao.getValor() < 0) {
             throw new IllegalArgumentException("Valor da transação não pode ser negativo.");
