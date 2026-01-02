@@ -2,6 +2,8 @@ package com.itau.desafio.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.itau.desafio.Domain.EstatisticaTransacoes;
 import com.itau.desafio.Domain.Transacao;
@@ -9,10 +11,13 @@ import com.itau.desafio.Domain.Transacao;
 @Service
 public class EstatisticaService {
 
+    private static final Logger logger = LoggerFactory.getLogger(TransacaoService.class);
+
     @Autowired
     private TransacaoService transacaoService;
 
     public EstatisticaTransacoes estatisticasUltimoMinuto() {
+        logger.info("Calculando estatísticas das transações do último minuto");
 
         var transacoes = transacaoService.listarTransacoes();
 
