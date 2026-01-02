@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.time.OffsetDateTime;
 
 import org.springframework.http.MediaType;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,6 +29,12 @@ public class TransacaoControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @BeforeEach
+    void limpaTransacoes() throws Exception {
+        mockMvc.perform(delete("/transacao"))
+                .andExpect(status().isNoContent());
+    }
 
     @Test
     void criarTransacao_valida_retornaCreated() throws Exception {
