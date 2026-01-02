@@ -12,11 +12,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Transacao {
-    @NotNull
 
+    // Editando mensagem padrão da exceção de validação
+    @NotNull(message = "O valor da transação não pode ser nulo.")
     private Double valor;
 
-    @NotNull
-
+    @NotNull(message = "A data e hora da transação não pode ser nula.")
     private OffsetDateTime dataHora;
 }
