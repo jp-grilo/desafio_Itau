@@ -18,13 +18,16 @@ public class EstatisticaService {
 
     public EstatisticaTransacoes estatisticasUltimoMinuto() {
         logger.info("Calculando estatísticas das transações do último minuto");
-
+        long inicio = System.nanoTime();
         var transacoes = transacaoService.listarTransacoes();
 
         var stats = transacoes.stream()
                 .mapToDouble(Transacao::getValor)
                 .summaryStatistics();
 
+        long fim = System.nanoTime();
+        logger.info("Estatísticas calculadas em {} ms", (fim - inicio) / 1000000);
+        
         return new EstatisticaTransacoes(
                 stats.getCount(),
                 stats.getSum(),
